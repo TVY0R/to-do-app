@@ -1,70 +1,154 @@
-# Getting Started with Create React App
+# React Todo App with Local Caching and Offline Support
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A simple and responsive Todo List application built with **React**, supporting **CRUD** operations, **search & filter**, **pagination**, **localStorage caching (localforage)**, and **offline access using IndexedDB (Dexie.js)**.
+
+---
+
+## Features
+
+- Create, Read, Update, and Delete (CRUD) todos
+- Search todos by title and filter by status
+- Paginate todo list for better UX
+- API response caching using `localforage` via `localStorage`
+- Offline capability via `Dexie.js` and IndexedDB
+- WCAG AA-compliant styling for accessibility
+- Fully responsive and mobile-friendly
+- Simple routing using `react-router-dom`
+
+---
+
+## Installation & Setup
+
+### Prerequisites
+
+- Node.js & npm installed
+- JSON Server (for mock backend)
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/your-username/todo-app.git
+cd todo-app
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Start the mock API server
+
+Ensure you have a `db.json` file in the root with todo data.
+
+```bash
+npx json-server --watch db.json --port 3006
+```
+
+### 4. Run the React app
+
+```bash
+npm start
+```
+
+The app will be available at [http://localhost:3000](http://localhost:3000)
+
+---
 
 ## Available Scripts
 
-In the project directory, you can run:
+| Command           | Description                     |
+| ----------------- | ------------------------------- |
+| `npm start`       | Starts the development server   |
+| `npm run build`   | Builds the app for production   |
+| `npx json-server` | Starts the mock REST API server |
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Technology Stack
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **React** – Frontend framework
+- **React Router DOM** – Page routing
+- **localforage** – Caching API responses in localStorage
+- **Dexie.js** – IndexedDB wrapper for offline storage
+- **JSON Server** – Mock RESTful API
+- **CSS (App.css)** – Centralized and accessible styling
 
-### `npm test`
+### 🔧 Architecture Decisions
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Used `localforage` to abstract localStorage and handle async cache storage.
+- Adopted `Dexie.js` for easy and powerful offline data handling via IndexedDB.
+- Centralized UI styling in `App.css` for maintainability.
+- Adopted paginated listing and filtering to manage large data efficiently.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🛠 API Documentation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Base URL
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+http://localhost:3006/todos
+```
 
-### `npm run eject`
+### Endpoints
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+| Method | Endpoint     | Description         |
+| ------ | ------------ | ------------------- |
+| GET    | `/todos`     | Fetch all todos     |
+| GET    | `/todos/:id` | Fetch a single todo |
+| POST   | `/todos`     | Create a new todo   |
+| PUT    | `/todos/:id` | Update a todo       |
+| DELETE | `/todos/:id` | Delete a todo       |
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Sample Payload
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```json
+{
+  "title": "Learn React",
+  "description": "Complete React basics tutorial",
+  "status": "Pending"
+}
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## Screenshots
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Main Todo List with Search, Filter, and Pagination
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![Main View](./screenshots/todo-main.png)
 
-### Code Splitting
+### Create Todo Form
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![Create Page](./screenshots/CreateTodoForm.png)
 
-### Analyzing the Bundle Size
+### View Details Page
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+![View Details](./screenshots/ViewTodoDetails.png)
 
-### Making a Progressive Web App
+### Update Todo Page
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+![Update Page](./screenshots/UpdateTodoDetails.png)
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Known Issues
 
-### Deployment
+- No routing to the newly created To-do page immediately after its been created.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+## 🔮 Future Improvements
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Add user authentication
+- Add dashboard analytics for completed tasks
+- Push/browser notifications for reminders
+
+---
+
+## 👩🏽‍💻 Author
+
+**Mariam Lawal** – [GitHub](https://github.com/tvy0r) | Alt School ID: `ALT/SOE/024/0468`
+
+---

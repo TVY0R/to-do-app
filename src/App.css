@@ -1,38 +1,215 @@
-.App {
-  text-align: center;
+:root {
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --success: #10b981;
+  --danger: #ef4444;
+  --gray-100: #f3f4f6;
+  --gray-300: #d1d5db;
+  --gray-700: #374151;
+  --gray-900: #111827;
+  --text-main: #1f2937;
+  --white: #ffffff;
+  --radius: 10px;
+  --transition: 0.3s ease;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
+  margin: 0;
+  padding: 2rem 1rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--gray-100);
+  color: var(--text-main);
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.todo-container {
+  width: 100%;
+  max-width: 750px;
+  background-color: var(--white);
+  padding: 2rem 2.5rem;
+  border-radius: var(--radius);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.todo-heading,
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+label {
+  display: block;
+  margin-top: 1.2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--gray-900);
+}
+
+input[type="text"],
+textarea,
+select {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius);
+  background-color: var(--gray-100);
+  font-size: 1rem;
+  transition: border var(--transition), box-shadow var(--transition);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.btn {
+  padding: 0.7rem 1.4rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background-color var(--transition), transform 0.2s;
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-create {
+  background-color: var(--success);
+  color: var(--white);
+  text-decoration: none;
+}
+
+.btn-create:hover {
+  background-color: #059669;
+}
+
+.btn-back {
+  background-color: var(--gray-700);
+  color: var(--white);
+  text-decoration: none;
+}
+
+.btn-back:hover {
+  background-color: #1f2937;
+}
+
+.btn-update {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.btn-update:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-info {
+  background-color: #0ea5e9;
+  color: var(--white);
+}
+
+.btn-info:hover {
+  background-color: #0284c7;
+}
+
+.btn-danger {
+  background-color: var(--danger);
+  color: var(--white);
+}
+
+.btn-danger:hover {
+  background-color: #dc2626;
+}
+
+.errorMsg {
+  color: var(--danger);
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+}
+
+th,
+td {
+  padding: 0.75rem;
+  border: 1px solid var(--gray-300);
+  text-align: left;
+  font-size: 1rem;
+}
+
+th {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+td {
+  background-color: var(--white);
+}
+
+tbody tr:hover {
+  background-color: var(--gray-100);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.pagination button {
+  padding: 0.5rem 1rem;
+  background-color: var(--primary);
   color: white;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color var(--transition);
 }
 
-.App-link {
-  color: #61dafb;
+.pagination button:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.pagination span {
+  font-weight: bold;
+  color: var(--gray-700);
+}
+
+textarea {
+  min-height: 120px;
+}
+
+@media (max-width: 600px) {
+  .todo-container {
+    padding: 1.5rem;
   }
-  to {
-    transform: rotate(360deg);
+
+  .btn {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .pagination {
+    flex-direction: column;
   }
 }

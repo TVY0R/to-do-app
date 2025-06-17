@@ -129,7 +129,7 @@ api.oluwasetemi.dev
 
 ---
 
-## 🔮 Future Improvements
+## Future Improvements
 
 - Add user authentication
 - Add dashboard analytics for completed tasks
@@ -137,7 +137,7 @@ api.oluwasetemi.dev
 
 ---
 
-## 👩🏽‍💻 Author
+## Author
 
 **Mariam Lawal** – [GitHub](https://github.com/tvy0r) | Alt School ID: `ALT/SOE/024/0468`
 

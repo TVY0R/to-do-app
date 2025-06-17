@@ -1,6 +1,6 @@
-# React Todo App with Local Caching and Offline Support
+# React Todo App supporting CRUD operations
 
-A simple and responsive Todo List application built with **React**, supporting **CRUD** operations, **search & filter**, **pagination**, **localStorage caching (localforage)**, and **offline access using IndexedDB (Dexie.js)**.
+A simple and responsive Todo List application built with **React**, supporting **CRUD** operations, **search & filter** and **pagination**
 
 ---
 
@@ -8,9 +8,7 @@ A simple and responsive Todo List application built with **React**, supporting *
 
 - Create, Read, Update, and Delete (CRUD) todos
 - Search todos by title and filter by status
-- Paginate todo list for better UX
-- API response caching using `localforage` via `localStorage`
-- Offline capability via `Dexie.js` and IndexedDB
+- Paginate todo list for better UI
 - WCAG AA-compliant styling for accessibility
 - Fully responsive and mobile-friendly
 - Simple routing using `react-router-dom`
@@ -27,8 +25,8 @@ A simple and responsive Todo List application built with **React**, supporting *
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/todo-app.git
-cd todo-app
+git clone https://github.com/your-username/to-do-app.git
+cd to-do-app
 ```
 
 ### 2. Install dependencies
@@ -42,7 +40,7 @@ npm install
 Ensure you have a `db.json` file in the root with todo data.
 
 ```bash
-npx json-server --watch db.json --port 3006
+npx json-server --watch db.json --port 2000
 ```
 
 ### 4. Run the React app
@@ -51,7 +49,7 @@ npx json-server --watch db.json --port 3006
 npm start
 ```
 
-The app will be available at [http://localhost:3000](http://localhost:3000)
+The app will be available at (https://to-do-app-qyky.vercel.app/)
 
 ---
 
@@ -69,15 +67,11 @@ The app will be available at [http://localhost:3000](http://localhost:3000)
 
 - **React** – Frontend framework
 - **React Router DOM** – Page routing
-- **localforage** – Caching API responses in localStorage
-- **Dexie.js** – IndexedDB wrapper for offline storage
 - **JSON Server** – Mock RESTful API
 - **CSS (App.css)** – Centralized and accessible styling
 
 ### 🔧 Architecture Decisions
 
-- Used `localforage` to abstract localStorage and handle async cache storage.
-- Adopted `Dexie.js` for easy and powerful offline data handling via IndexedDB.
 - Centralized UI styling in `App.css` for maintainability.
 - Adopted paginated listing and filtering to manage large data efficiently.
 
@@ -88,18 +82,18 @@ The app will be available at [http://localhost:3000](http://localhost:3000)
 ### Base URL
 
 ```
-http://localhost:3006/todos
+api.oluwasetemi.dev
 ```
 
 ### Endpoints
 
 | Method | Endpoint     | Description         |
 | ------ | ------------ | ------------------- |
-| GET    | `/todos`     | Fetch all todos     |
-| GET    | `/todos/:id` | Fetch a single todo |
-| POST   | `/todos`     | Create a new todo   |
-| PUT    | `/todos/:id` | Update a todo       |
-| DELETE | `/todos/:id` | Delete a todo       |
+| GET    | `/tasks`     | Fetch all todos     |
+| GET    | `/tasks/:id` | Fetch a single todo |
+| POST   | `/tasks`     | Create a new todo   |
+| PATCH  | `/tasks/:id` | Update a todo       |
+| DELETE | `/tasks/:id` | Delete a todo       |
 
 #### Sample Payload
 
@@ -126,10 +120,6 @@ http://localhost:3006/todos
 ### View Details Page
 
 ![View Details](./screenshots/ViewTodoDetails.png)
-
-### Update Todo Page
-
-![Update Page](./screenshots/UpdateTodoDetails.png)
 
 ---
 

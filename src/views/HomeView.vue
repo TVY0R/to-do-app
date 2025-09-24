@@ -139,7 +139,6 @@ const goToLastPage = () => (currentPage.value = totalPages.value);
 </script>
 
 <style scoped>
-/* optional small tweaks; your App.css in assets will do most styling */
 .container { max-width: 900px; margin: 24px auto; padding: 12px; background: #fff; border-radius:8px; }
 .table-container { margin-bottom: 12px; }
 .btn { margin-right: 6px; }

@@ -134,5 +134,4 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-/* You can reuse your App.css styles here */
 </style>

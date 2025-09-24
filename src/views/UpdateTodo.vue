@@ -1,62 +1,43 @@
-<template>
-  <div style="padding:20px">
-    <h2>Update Todo</h2>
-    <form @submit.prevent="handleSubmit">
-      <input v-model="name" required />
-      <textarea v-model="description" required />
-      <select v-model="status">
-        <option value="TODO">TODO</option>
-        <option value="IN_PROGRESS">IN_PROGRESS</option>
-        <option value="DONE">DONE</option>
-        <option value="CANCELLED">CANCELLED</option>
-      </select>
-      <div style="margin-top:8px">
-        <button type="submit">Update</button>
-        <button type="button" @click="back" style="margin-left:8px">Cancel</button>
-      </div>
-    </form>
-  </div>
-</template>
-
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import { db, Todo } from "../db";
 
 const route = useRoute();
 const router = useRouter();
-const id = route.params.id as string;
-
-const name = ref("");
-const description = ref("");
-const status = ref("TODO");
+const todo = ref<Todo | null>(null);
 
 onMounted(async () => {
-  if (!id) return;
-  try {
-    const res = await fetch(`https://api.oluwasetemi.dev/tasks/${id}`);
-    const data = await res.json();
-    const todo = data.data ?? data;
-    name.value = todo?.name ?? "";
-    description.value = todo?.description ?? "";
-    status.value = todo?.status ?? "TODO";
-  } catch (err) {
-    console.error(err);
-  }
+  const id = Number(route.params.id);
+  todo.value = await db.todos.get(id);
 });
 
-const handleSubmit = async () => {
-  try {
-    await fetch(`https://api.oluwasetemi.dev/tasks/${id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: name.value, description: description.value, status: status.value }),
-    });
-    alert("Todo updated!");
-    router.push("/");
-  } catch (err) {
-    console.error(err);
-  }
-};
+async function updateTodo() {
+  if (!todo.value?.id) return;
 
-const back = () => router.push("/");
+  await db.todos.update(todo.value.id, {
+    title: todo.value.title,
+    description: todo.value.description,
+    status: todo.value.status,
+    synced: navigator.onLine,
+  });
+
+  alert("Todo updated!");
+  router.push("/");
+}
 </script>
+
+<template>
+  <div v-if="todo">
+    <h2>Edit Todo</h2>
+    <input v-model="todo.title" />
+    <textarea v-model="todo.description"></textarea>
+    <select v-model="todo.status">
+      <option value="TODO">TODO</option>
+      <option value="IN_PROGRESS">IN PROGRESS</option>
+      <option value="DONE">DONE</option>
+      <option value="CANCELLED">CANCELLED</option>
+    </select>
+    <button @click="updateTodo">Update</button>
+  </div>
+</template>
